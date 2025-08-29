@@ -19,8 +19,7 @@ export default function PartnerCTA() {
           </ul>
 
           <div className="mt-8 flex gap-3">
-            <a
-              href="#contact?topic=partner"
+            <a href="/?topic=partner#contact"
               className="px-6 py-3 rounded-2xl bg-accent-500 text-black font-bold shadow-glow hover:-translate-y-0.5 transition"
             >
               Apply to Partner

@@ -14,7 +14,7 @@ export default function Partners() {
             <h2 className="font-display text-4xl md:text-5xl font-extrabold">Partners</h2>
             <p className="text-white/70 mt-3 text-lg">We believe support and respect is a two-way street. We grow together.</p>
           </div>
-          <a href="#contact" className="hidden sm:inline-flex items-center gap-2 px-5 py-3 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-sm">
+          <a href="/?topic=partner#contact" className="hidden sm:inline-flex items-center gap-2 px-5 py-3 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-sm">
             Become a partner →
           </a>
         </div>

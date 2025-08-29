@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { useSearchParams } from "next/navigation";
 
 type ContactPayload = {
   name: string;
@@ -10,6 +11,8 @@ type ContactPayload = {
 };
 
 export default function Contact() {
+  const search = useSearchParams();
+  const topic = search.get("topic") || "";
   const [status, setStatus] = useState<"idle" | "loading" | "ok" | "error">("idle");
   const [error, setError] = useState("");
 
@@ -58,6 +61,15 @@ export default function Contact() {
         <p className="text-white/70 mt-2">Booking, partnerships, sponsors, or press.</p>
         <div className="mt-8 p-6 rounded-2xl bg-base-800/70 border border-white/10 text-left">
           <form onSubmit={onSubmit} className="grid gap-4">
+            {/* keep this hidden input so the topic is posted to the API */}
+            <input type="hidden" name="topic" value={topic} />
+
+            {/* 👇 your hint goes right here */}
+            {topic === "partner" && (
+                <p className="text-sm text-white/60 -mt-2 mb-2">
+                Partner application — tell us about your community/brand, links, and what you’d like to build with us.
+                </p>
+            )}
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
                 <label className="text-sm text-white/60">Your Name</label>
