@@ -6,7 +6,7 @@ import Worlds from "@/src/components/Worlds";
 import Partners from "@/src/components/Partners";
 import Sponsors from "@/src/components/Sponsors";
 import Contact from "@/src/components/Contact";
-
+import PartnerCTA from "@/src/components/PartnerCTA";
 
 export default function Page() {
 return (
@@ -18,6 +18,7 @@ return (
 <Staff />
 <Worlds />
 <Partners />
+<PartnerCTA />
 <Sponsors />
 <Contact />
 </main>
