@@ -55,5 +55,12 @@ export const worlds: WorldItem[] = [
     desc: "A sacred temple of light and shadow where cosmic energy pulses through every beat․",
     img: "https://api.vrchat.cloud/api/1/file/file_1d5b53de-3098-4a1d-992e-b8593867b885/2/file",
     link: "https://vrchat.com/home/world/wrld_85df819a-9d5b-4f7c-9d56-dd3201dd8815/info"
+  },
+   {
+    name: "Cave-In",
+    tag: "PC/Quest",
+    desc: "The Cave-In is a free-to-use underground rave sanctuary carved into neon stone․",
+    img: "https://api.vrchat.cloud/api/1/file/file_09004ed8-b10b-450c-8c14-581b63f43bff/1/file",
+    link: "https://vrchat.com/home/world/wrld_8fdd2b98-16ee-49c5-aee1-276bb3cc9a16/info"
   }
 ];

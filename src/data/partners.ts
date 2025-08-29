@@ -21,5 +21,11 @@ export const partners: PartnerItem[] = [
     // TODO: add their real Discord invite
     url: "https://discord.gg/3ftDSrkTx5",
     logo: "/partners/obsidian.png"
-  }
+  },
+  {
+    name: "Resolve Entertainment",
+    // TODO: add their real Discord invite
+    url: "https://discord.gg/EtzF8gRAN2",
+    logo: "/partners/resolve.png"
+  },
 ];
