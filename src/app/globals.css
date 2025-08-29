@@ -7,3 +7,54 @@ html { scroll-behavior: smooth; }
   background-image: radial-gradient(transparent 1px, rgba(255,255,255,0.02) 1px);
   background-size: 16px 16px;
 }
+
+/* ==== HERO FX ==== */
+@keyframes blob {
+  0% { transform: translate(0,0) scale(1); }
+  33% { transform: translate(30px,-20px) scale(1.05); }
+  66% { transform: translate(-20px,10px) scale(0.96); }
+  100% { transform: translate(0,0) scale(1); }
+}
+.animate-blob { animation: blob 14s ease-in-out infinite; }
+.animation-delay-2000 { animation-delay: 2s; }
+.animation-delay-4000 { animation-delay: 4s; }
+
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+@keyframes sheen {
+  0%   { transform: translateX(-150%); }
+  100% { transform: translateX(150%); }
+}
+
+/* Shimmer on CTA */
+.btn-sheen { position: relative; overflow: hidden; }
+.btn-sheen::after {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0; width: 40%;
+  transform: translateX(-150%) skewX(-20deg);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+  filter: blur(2px);
+  pointer-events: none;
+}
+.btn-sheen:hover::after { animation: sheen 900ms ease-in-out; }
+
+/* Animated gradient ring around video */
+.ring-animate { position: relative; }
+.ring-animate::before {
+  content: "";
+  position: absolute; inset: -2px; border-radius: 1rem;
+  background: conic-gradient(
+    from 0deg,
+    #F4C542, transparent 25%,
+    #B8E3FF, transparent 50%,
+    #F4C542, transparent 75%,
+    #B8E3FF
+  );
+  animation: spin-slow 8s linear infinite;
+  /* show as a thin ring using mask */
+  -webkit-mask: 
+    radial-gradient(farthest-side, transparent calc(100% - 2px), black 0);
+  mask:
+    radial-gradient(farthest-side, transparent calc(100% - 2px), black 0);
+  pointer-events: none;
+}
