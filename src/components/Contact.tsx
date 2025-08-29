@@ -14,34 +14,42 @@ export default function Contact() {
   const [error, setError] = useState("");
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setStatus("loading");
-    setError("");
+  e.preventDefault();
+  setStatus("loading");
+  setError("");
 
-    const form = new FormData(e.currentTarget);
-    const data: ContactPayload = {
-      name: String(form.get("name") || ""),
-      email: String(form.get("email") || ""),
-      discord: String(form.get("discord") || ""),
-      message: String(form.get("message") || ""),
-      hp: String(form.get("hp") || ""),
-    };
+  const formEl = e.currentTarget;                   // 👈 cache the form element
+  const form = new FormData(formEl);
+  const data = {
+    name: String(form.get("name") || ""),
+    email: String(form.get("email") || ""),
+    discord: String(form.get("discord") || ""),
+    message: String(form.get("message") || ""),
+    hp: String(form.get("hp") || ""),
+  };
 
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-      if (!res.ok) throw new Error(await res.text());
-      setStatus("ok");
-      e.currentTarget.reset();
-    } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : String(err);
-      setError(msg);
-      setStatus("error");
+  try {
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+
+    if (!res.ok) {
+      // surface server error text so you see what's wrong if webhook fails
+      const txt = await res.text();
+      throw new Error(txt || "Request failed");
     }
+
+    setStatus("ok");
+    formEl.reset();                                  // 👈 safe now
+  } catch (err: unknown) {
+    const msg = err instanceof Error ? err.message : String(err);
+    setError(msg);
+    setStatus("error");
   }
+}
+
 
   return (
     <section id="contact" className="py-20 border-t border-white/5">
