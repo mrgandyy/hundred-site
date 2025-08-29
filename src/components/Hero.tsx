@@ -13,9 +13,8 @@ export default function Hero() {
           <div>
             <p className="text-sm uppercase tracking-widest text-white/60">VRCHAT COLLECTIVE</p>
             <h1 className="mt-3 font-display text-4xl sm:text-5xl md:text-6xl leading-tight font-extrabold">
-              We don't do 99.{" "}
-              <span className="text-accent-400 drop-shadow">We keep it 100.</span>
-            </h1>
+  We don’t do 99. <span className="text-accent-400 drop-shadow">We keep it 100.</span>
+</h1>
             <p className="mt-5 text-white/80 max-w-xl">
               Events. Worlds. Culture. THE HUNDRED is a collective of creators, performers,
               and pioneers shaping the future of virtual nightlife.
