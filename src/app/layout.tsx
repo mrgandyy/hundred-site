@@ -1,4 +1,7 @@
+// add this import at top of file if you don’t have types:
 import "./globals.css";
+import { Suspense } from "react";
+import ScrollProgress from "@/src/components/ScrollProgress";
 
 
 export const metadata = {
@@ -18,7 +21,7 @@ return (
 <head>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Orbitron:wght@500;800&display=swap" rel="stylesheet" />
 </head>
-<body>{children}</body>
+<body><Suspense><ScrollProgress /></Suspense>{children}</body>
 </html>
 );
 }
