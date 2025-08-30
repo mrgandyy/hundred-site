@@ -27,8 +27,8 @@ return (
 <p className="text-white/50 text-sm">© {new Date().getFullYear()} THE HUNDRED. All rights reserved.</p>
 <div className="flex items-center gap-4 text-sm">
 <a href="https://discord.gg/thehundred" target="_blank" className="hover:text-accent-400">Discord</a>
-<a href="#" className="hover:text-accent-400">Twitch</a>
-<a href="#" className="hover:text-accent-400">Patreon</a>
+<a href="https://twitch.tv/twerktacotv" className="hover:text-accent-400">Twitch</a>
+<a href="https://patreon.com/TwerkTaco" className="hover:text-accent-400">Patreon</a>
 </div>
 </div>
 </footer>
