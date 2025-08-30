@@ -7,69 +7,68 @@ type ContactPayload = {
   email: string;
   discord?: string;
   message: string;
-  hp?: string; // honeypot
+  hp?: string;     // honeypot
+  topic?: string;  // e.g., "partner"
 };
 
 export default function Contact() {
-  const search = useSearchParams();
-  const topic = search.get("topic") || "";
   const [status, setStatus] = useState<"idle" | "loading" | "ok" | "error">("idle");
   const [error, setError] = useState("");
+  const search = useSearchParams();
+  const topic = search.get("topic") || "";
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
-  e.preventDefault();
-  setStatus("loading");
-  setError("");
+    e.preventDefault();
+    setStatus("loading");
+    setError("");
 
-  const formEl = e.currentTarget;                   // 👈 cache the form element
-  const form = new FormData(formEl);
-  const data = {
-    name: String(form.get("name") || ""),
-    email: String(form.get("email") || ""),
-    discord: String(form.get("discord") || ""),
-    message: String(form.get("message") || ""),
-    hp: String(form.get("hp") || ""),
-  };
+    const formEl = e.currentTarget; // cache form element before awaits
+    const form = new FormData(formEl);
+    const data: ContactPayload = {
+      name: String(form.get("name") || ""),
+      email: String(form.get("email") || ""),
+      discord: String(form.get("discord") || ""),
+      message: String(form.get("message") || ""),
+      hp: String(form.get("hp") || ""),
+      topic: String(form.get("topic") || ""),
+    };
 
-  try {
-    const res = await fetch("/api/contact", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    });
-
-    if (!res.ok) {
-      // surface server error text so you see what's wrong if webhook fails
-      const txt = await res.text();
-      throw new Error(txt || "Request failed");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) {
+        const txt = await res.text();
+        throw new Error(txt || "Request failed");
+      }
+      setStatus("ok");
+      formEl.reset();
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : String(err);
+      setError(msg);
+      setStatus("error");
     }
-
-    setStatus("ok");
-    formEl.reset();                                  // 👈 safe now
-  } catch (err: unknown) {
-    const msg = err instanceof Error ? err.message : String(err);
-    setError(msg);
-    setStatus("error");
   }
-}
-
 
   return (
     <section id="contact" className="py-20 border-t border-white/5">
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 className="font-display text-3xl md:text-4xl font-extrabold">Contact Us</h2>
         <p className="text-white/70 mt-2">Booking, partnerships, sponsors, or press.</p>
+
         <div className="mt-8 p-6 rounded-2xl bg-base-800/70 border border-white/10 text-left">
           <form onSubmit={onSubmit} className="grid gap-4">
-            {/* keep this hidden input so the topic is posted to the API */}
+            {/* keep topic in submissions */}
             <input type="hidden" name="topic" value={topic} />
 
-            {/* 👇 your hint goes right here */}
             {topic === "partner" && (
-                <p className="text-sm text-white/60 -mt-2 mb-2">
+              <p className="text-sm text-white/60 -mt-2 mb-2">
                 Partner application — tell us about your community/brand, links, and what you’d like to build with us.
-                </p>
+              </p>
             )}
+
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
                 <label className="text-sm text-white/60">Your Name</label>
@@ -89,6 +88,7 @@ export default function Contact() {
                 />
               </div>
             </div>
+
             <div>
               <label className="text-sm text-white/60">Email</label>
               <input
@@ -99,6 +99,7 @@ export default function Contact() {
                 placeholder="you@example.com"
               />
             </div>
+
             <div>
               <label className="text-sm text-white/60">Message</label>
               <textarea
@@ -110,7 +111,7 @@ export default function Contact() {
               />
             </div>
 
-            {/* honeypot */}
+            {/* Honeypot (spam trap) */}
             <input type="text" name="hp" tabIndex={-1} autoComplete="off" className="hidden" />
 
             <div className="flex flex-wrap items-center gap-3">

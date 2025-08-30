@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function PartnerCTA() {
   return (
     <section className="py-24 border-t border-white/5">
@@ -11,19 +13,23 @@ export default function PartnerCTA() {
 
           <ul className="mt-6 space-y-3 text-white/80">
             <li>• Homepage logo + link on 100vr.club</li>
-            <li>• Collab slots & co-hosted events</li>
-            <li>• Social promo & announcement support</li>
+            <li>• Collab slots &amp; co-hosted events</li>
+            <li>• Social promo &amp; announcement support</li>
             <li>• Partner Discord role + private channel</li>
             <li>• Priority booking + featured placement</li>
             <li>• Early access/test nights in our worlds</li>
           </ul>
 
           <div className="mt-8 flex gap-3">
-            <a href="/?topic=partner#contact"
+            {/* Internal navigation → use Link */}
+            <Link
+              href={{ pathname: "/", query: { topic: "partner" }, hash: "contact" }}
               className="px-6 py-3 rounded-2xl bg-accent-500 text-black font-bold shadow-glow hover:-translate-y-0.5 transition"
             >
               Apply to Partner
-            </a>
+            </Link>
+
+            {/* External link can stay <a> */}
             <a
               href="https://discord.gg/thehundred"
               target="_blank"
