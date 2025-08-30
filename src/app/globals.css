@@ -90,3 +90,34 @@ html { scroll-behavior: smooth; }
 
 /* soft highlight on hover */
 .hover-glow:hover { box-shadow: 0 0 0 1px rgba(255,255,255,.10) inset, 0 12px 40px rgba(244,197,66,.12) }
+
+
+/* ===== Aurora blobs ===== */
+@keyframes auroraMove {
+  0%   { transform: translate3d(-10%, -12%, 0) scale(1); }
+  50%  { transform: translate3d(12%,  8%, 0) scale(1.08); }
+  100% { transform: translate3d(-10%, -12%, 0) scale(1); }
+}
+.aurora {
+  filter: blur(60px);
+  opacity: .38;                  /* tweak 0.25–0.55 */
+  mix-blend-mode: screen;        /* pops on dark bg */
+  animation: auroraMove 22s ease-in-out infinite;
+}
+
+/* ===== Cyber grid + scanline ===== */
+.bg-cyber {
+  position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background:
+    radial-gradient(circle at 1px 1px, rgba(255,255,255,0.06) 1px, transparent 1px) 0 0 / 24px 24px,
+    linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0));
+}
+.scanline {
+  position: absolute; left: 0; right: 0; height: 160px;
+  background: linear-gradient(180deg, rgba(244,197,66,0.10), transparent 60%);
+  filter: blur(16px);
+  animation: scan 9s linear infinite;
+}
+@keyframes scan {
+  0% { top: -20% } 100% { top: 120% }
+}
