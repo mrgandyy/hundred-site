@@ -49,8 +49,7 @@ export default function Hero() {
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 />
               </div>
-            </div>
-            <p className="mt-2 text-xs text-white/50">Replace with your trailer or event reel.</p>
+            </div>            
           </div>
         </div>
       </div>
