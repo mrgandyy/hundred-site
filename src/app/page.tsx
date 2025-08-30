@@ -1,3 +1,5 @@
+import { Suspense } from "react";
+
 import Header from "@/src/components/Header";
 import Hero from "@/src/components/Hero";
 import Events from "@/src/components/Events";
@@ -20,7 +22,9 @@ return (
 <Partners />
 <PartnerCTA />
 <Sponsors />
+<Suspense fallback={null}>
 <Contact />
+</Suspense>
 </main>
 <footer className="py-10 border-t border-white/5">
 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
